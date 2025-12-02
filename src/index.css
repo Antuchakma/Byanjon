@@ -2,25 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* --- Spin (smooth linear) --- */
 @keyframes spin-medium {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
 .animate-spin-medium {
-  animation: spin-medium 3s linear infinite;
+  animation: spin-medium 1.4s linear infinite;
 }
 
-/* Marquee animation */
+/* --- Marquee (smooth double-text sliding) --- */
+.marquee-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee 10s linear infinite;
+}
+.marquee-item {
+  white-space: nowrap;
+}
 @keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); } /* because we duplicated text */
 }
 
-.animate-marquee {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 20s linear infinite;
+/* --- Fade in when loading finishes --- */
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
 }
+.fade-in {
+  animation: fadeInScale 600ms ease-out;
+}
+
+/* --- Watermark behind cassette --- */
+.watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem; /* large */
+  font-weight: 800;
+  color: rgba(20, 20, 20, 0.04); /* very faded */
+  transform: rotate(-8deg);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+@media (max-width: 768px) {
+  .watermark {
+    font-size: 4.5rem;
+  }
+}
+
+/* Slight improvement: keep marquee smooth on small widths */
+@media (max-width: 640px) {
+  .marquee-content { animation-duration: 8s; }
+}
+
 
 
