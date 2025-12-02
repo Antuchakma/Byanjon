@@ -9,7 +9,7 @@ export default function HomePage() {
   const [dots, setDots] = useState(""); // animated dots
   const clickAudio = useRef(null);
 
-  const playlistId = "PL9LkJszkF_Z6bJ82689htd2wch-HVbzCO";
+  const playlistId = "PLGt6T0xqilGDpSOfWvva0GyxA8JegxaYM";
 
   // Initialize click audio
   useEffect(() => {
